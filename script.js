@@ -1,89 +1,106 @@
-let colorButtons = ["red", "blue", "green", "yellow"];
+let colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "cyan"];
 let gameSequence = [];
 let playerSequence = [];
 let level = 0;
-let speed = 1000; // Starting speed
+let speed = 1000; // Initial speed
+let gridSize = 2; // Initial grid size (2x2)
 
 const startButton = document.getElementById('start-btn');
-const colorBtnElems = document.querySelectorAll('.color-btn');
+const gameBoard = document.getElementById('game-board');
 const leaderboardElem = document.getElementById('leaderboard');
 
-// Function to flash a color
-function flashColor(color) {
-    const colorElement = document.getElementById(color);
-    colorElement.style.opacity = 0.5;
-    setTimeout(() => {
-        colorElement.style.opacity = 1;
-    }, speed / 2);
+// Generate game board based on grid size
+function generateGameBoard() {
+    gameBoard.innerHTML = '';
+    gameBoard.style.gridTemplateColumns = `repeat(${gridSize}, 150px)`;
+    gameBoard.style.gridTemplateRows = `repeat(${gridSize}, 150px)`;
+
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        let color = colors[i % colors.length];
+        let colorDiv = document.createElement('div');
+        colorDiv.classList.add('color-btn');
+        colorDiv.id = color;
+        colorDiv.style.backgroundColor = color;
+        gameBoard.appendChild(colorDiv);
+
+        // Add event listener for player input
+        colorDiv.addEventListener('click', () => handlePlayerInput(color));
+    }
 }
 
-// Function to show the sequence
+// Flash a color
+function flashColor(color) {
+    const colorElem = document.getElementById(color);
+    colorElem.style.opacity = 0.5;
+    setTimeout(() => colorElem.style.opacity = 1, speed / 2);
+}
+
+// Play the sequence
 function playSequence() {
     let i = 0;
     const interval = setInterval(() => {
         flashColor(gameSequence[i]);
         i++;
-        if (i >= gameSequence.length) {
-            clearInterval(interval);
-        }
+        if (i >= gameSequence.length) clearInterval(interval);
     }, speed);
 }
 
-// Add to sequence
+// Add a random color to the sequence
 function addToSequence() {
-    const randomColor = colorButtons[Math.floor(Math.random() * 4)];
-    gameSequence.push(randomColor);
+    let availableColors = document.querySelectorAll('.color-btn');
+    const randomIndex = Math.floor(Math.random() * availableColors.length);
+    gameSequence.push(availableColors[randomIndex].id);
 }
 
-// Start game
+// Start the game
 function startGame() {
     gameSequence = [];
     playerSequence = [];
     level = 0;
+    gridSize = 2; // Reset grid size to initial state
+    generateGameBoard();
     nextLevel();
 }
 
-// Move to the next level
+// Go to the next level
 function nextLevel() {
     playerSequence = [];
     level++;
-    speed = Math.max(300, speed - 50); // Game speeds up
+    speed = Math.max(300, speed - 50); // Speed up the game each level
     addToSequence();
     playSequence();
+
+    // Increase grid size every 5 levels
+    if (level % 5 === 0) {
+        gridSize++;
+        generateGameBoard();
+    }
 }
 
 // Handle player input
 function handlePlayerInput(color) {
     playerSequence.push(color);
-    const currentStep = playerSequence.length - 1;
-    if (playerSequence[currentStep] !== gameSequence[currentStep]) {
-        alert("Game Over! You reached level " + level);
-        saveScore(level); // Save score when game ends
+    const currentMove = playerSequence.length - 1;
+
+    if (playerSequence[currentMove] !== gameSequence[currentMove]) {
+        alert(`Game Over! You reached level ${level}`);
+        saveScore(level);
         startGame();
     } else if (playerSequence.length === gameSequence.length) {
         setTimeout(nextLevel, 1000);
     }
 }
 
-// Event listeners for the color buttons
-colorBtnElems.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const color = e.target.id;
-        flashColor(color);
-        handlePlayerInput(color);
-    });
-});
-
-// Start button event listener
+// Start button listener
 startButton.addEventListener('click', startGame);
 
 // Save score to localStorage
 function saveScore(score) {
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
     const username = prompt("Enter your name:");
-    leaderboard.push({ username: username, score: score });
+    leaderboard.push({ username, score });
     leaderboard.sort((a, b) => b.score - a.score);
-    leaderboard = leaderboard.slice(0, 10); // Keep top 10 scores
+    leaderboard = leaderboard.slice(0, 10); // Keep top 10
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
     loadLeaderboard();
 }
@@ -91,13 +108,8 @@ function saveScore(score) {
 // Load leaderboard from localStorage
 function loadLeaderboard() {
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
-    leaderboardElem.innerHTML = "";
-    leaderboard.forEach(entry => {
-        const li = document.createElement('li');
-        li.textContent = `${entry.username}: ${entry.score}`;
-        leaderboardElem.appendChild(li);
-    });
+    leaderboardElem.innerHTML = leaderboard.map(entry => `<li>${entry.username}: ${entry.score}</li>`).join('');
 }
 
-// Load leaderboard on page load
+// Load leaderboard when the page is loaded
 window.onload = loadLeaderboard;

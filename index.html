@@ -8,19 +8,46 @@
 </head>
 <body>
     <h1>Memory Game</h1>
-    <div id="game-board">
-        <div class="color-btn" id="red"></div>
-        <div class="color-btn" id="blue"></div>
-        <div class="color-btn" id="green"></div>
-        <div class="color-btn" id="yellow"></div>
-    </div>
+    <div id="game-board"></div>
     <button id="start-btn">Start Game</button>
-    <div>
-        <h3>Leaderboard</h3>
-        <ul id="leaderboard">
-            <!-- Scores will be loaded here -->
-        </ul>
-    </div>
-    <script src="script.js"></script>
+    
+    <!-- Audio element for the click sound -->
+    <audio id="click-sound" src="click-sound.mp3" preload="auto"></audio>
+    <audio id="background-music" autoplay></audio> <!-- Main audio element -->
+
+    <script>
+        // Define your playlist of songs
+        const playlist = [
+            "path/to/song1.mp3",
+            "path/to/song2.mp3",
+            "path/to/song3.mp3"
+        ];
+
+        let currentSongIndex = 0;
+        const audioPlayer = document.getElementById('background-music');
+
+        // Function to load a song and play it
+        function loadAndPlaySong(songIndex) {
+            if (songIndex < playlist.length) {
+                audioPlayer.src = playlist[songIndex];
+                audioPlayer.play();
+            }
+        }
+
+        // Play the first song when the page loads
+        loadAndPlaySong(currentSongIndex);
+
+        // Event listener for when a song ends
+        audioPlayer.addEventListener('ended', function() {
+            currentSongIndex++;
+            if (currentSongIndex < playlist.length) {
+                loadAndPlaySong(currentSongIndex);  // Play the next song
+            } else {
+                currentSongIndex = 0;  // Restart playlist if all songs are played
+                loadAndPlaySong(currentSongIndex);
+            }
+        });
+    </script>
+
 </body>
 </html>

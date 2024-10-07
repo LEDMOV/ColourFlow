@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#game-board {
+    display: grid;
+    justify-content: center;
+    margin: 20px auto;
+    grid-gap: 10px;
+}
+
+/* Style for color buttons */
+.color-btn {
+    width: 150px;
+    height: 150px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: #f0f0f0;
+    box-shadow: 0 6px #ccc; /* Shadow for 3D effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+/* Button pressed effect */
+.color-btn:active {
+    transform: translateY(8px); /* Push down more when clicked */
+    box-shadow: 0 2px #999; /* Shadow change on click */
+}
+
+/* Start button styling */
+#start-btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+#start-btn:hover {
+    background-color: #555; /* Darker on hover */
+}
+
+#leaderboard {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#leaderboard li {
+    font-size: 18px;
+    margin: 5px 0;
+}
