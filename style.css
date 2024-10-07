@@ -69,6 +69,21 @@ h1 {
     background: linear-gradient(45deg, #ff4b2b, #ff416c); /* Reverse gradient on hover */
     transform: scale(1.05); /* Slightly grow the button */
 }
+#start-btn, #music-toggle-btn {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient background */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+#start-btn:hover, #music-toggle-btn:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+}
 
 #leaderboard {
     list-style: none;

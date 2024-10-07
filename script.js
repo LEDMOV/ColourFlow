@@ -6,7 +6,7 @@ let speed = 1000; // Initial speed
 let gridSize = 2; // Initial grid size (2x2)
 
 const startButton = document.getElementById('start-btn');
-const toggleLeaderboardButton = document.getElementById('toggle-leaderboard-btn');
+const musicToggleButton = document.getElementById('music-toggle-btn'); // New button
 const gameBoard = document.getElementById('game-board');
 const leaderboardElem = document.getElementById('leaderboard');
 const clickSound = document.getElementById('click-sound'); 
@@ -20,6 +20,19 @@ const playlist = [
 
 let currentSongIndex = 0;
 const audioPlayer = document.getElementById('background-music');
+let isMusicPlaying = true; // Flag to track music status
+
+// Function to toggle music on and off
+function toggleMusic() {
+    if (isMusicPlaying) {
+        audioPlayer.pause(); // Pause music
+        musicToggleButton.textContent = "Play Music"; // Change button text
+    } else {
+        loadAndPlaySong(currentSongIndex); // Play the current song
+        musicToggleButton.textContent = "Pause Music"; // Change button text
+    }
+    isMusicPlaying = !isMusicPlaying; // Toggle the flag
+}
 
 // Generate game board based on grid size
 function generateGameBoard() {
@@ -111,6 +124,9 @@ startButton.addEventListener('click', () => {
     loadAndPlaySong(currentSongIndex); // Start the background music when the game begins
 });
 
+// Music toggle button listener
+musicToggleButton.addEventListener('click', toggleMusic); // Add event listener for music toggle button
+
 // Load and play a song
 function loadAndPlaySong(songIndex) {
     if (songIndex < playlist.length) {
@@ -151,9 +167,3 @@ function loadLeaderboard() {
 
 // Load leaderboard when the page is loaded
 window.onload = loadLeaderboard;
-
-// Toggle leaderboard visibility
-toggleLeaderboardButton.addEventListener('click', () => {
-    const leaderboard = leaderboardElem.style.display;
-    leaderboardElem.style.display = leaderboard === 'none' || leaderboard === '' ? 'block' : 'none';
-});
