@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, score in scores %}
+            <tr>
+                <td>{{ index + 1 }}</td> <!-- Rank -->
+                <td>{{ score[0] }}</td> <!-- Username -->
+                <td>{{ score[1] }}</td> <!-- Score -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Back to Game</a>
+</body>
+</html>
