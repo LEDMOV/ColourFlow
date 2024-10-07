@@ -23,6 +23,11 @@ ColourFlow is a fun and engaging game that challenges players' memory skills. Pl
 - CSS
 - JavaScript
 
+## Playing
+- Visit 
+    ```bash
+https://hackathon-sable-xi.vercel.app/
+
 ## Installation
 
 1. Clone the repository:
