@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Leaderboard</h1>
+        <button id="back-to-home-btn">Back to Home</button>
+    </header>
+
+    <main>
+        <ul id="leaderboard"></ul>
+    </main>
+
+    <script>
+        // Load leaderboard data from localStorage
+        function loadLeaderboard() {
+            const leaderboardElem = document.getElementById('leaderboard');
+            let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+            leaderboardElem.innerHTML = leaderboard.map(entry => `<li>${entry.username}: ${entry.score}</li>`).join('');
+        }
+
+        // Back to home button listener
+        document.getElementById('back-to-home-btn').addEventListener('click', () => {
+            window.location.href = 'index.html'; // Redirect to the homepage
+        });
+
+        // Load the leaderboard when the page is loaded
+        window.onload = loadLeaderboard;
+    </script>
+</body>
+</html>

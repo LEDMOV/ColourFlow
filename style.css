@@ -1,3 +1,9 @@
+/* Header styles */
+#header {
+    position: relative; /* Ensure the header is relatively positioned */
+}
+
+/* Body styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -10,6 +16,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Game board styles */
 #game-board {
     display: grid;
     grid-template-columns: repeat(2, 150px);
@@ -18,6 +25,7 @@ h1 {
     margin: 20px auto;
 }
 
+/* Color button styles */
 .color-btn {
     width: 150px;
     height: 150px;
@@ -34,9 +42,10 @@ h1 {
     box-shadow: 0 2px #999;
 }
 
+/* Start game button styles */
 #start-btn {
     padding: 10px 20px;
-    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient background */
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Red gradient */
     color: #fff;
     border: none;
     border-radius: 25px; /* More rounded corners */
@@ -48,28 +57,31 @@ h1 {
 }
 
 #start-btn:hover {
-    background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Purple gradient on hover */
     transform: scale(1.05); /* Slightly grow the button */
 }
 
+/* Toggle leaderboard button styles */
 #toggle-leaderboard-btn {
     padding: 10px 20px;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Different gradient */
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient background */
     color: #fff;
     border: none;
-    border-radius: 25px; /* Same rounded corners */
+    border-radius: 25px; /* Rounded corners */
     cursor: pointer;
     font-size: 16px;
     margin: 20px 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition */
 }
 
 #toggle-leaderboard-btn:hover {
-    background: linear-gradient(45deg, #ff4b2b, #ff416c); /* Reverse gradient on hover */
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Change background on hover */
     transform: scale(1.05); /* Slightly grow the button */
 }
-#start-btn, #music-toggle-btn {
+
+/* Music toggle button styles */
+#music-toggle-btn {
     padding: 10px 20px;
     background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient background */
     color: #fff; /* Text color */
@@ -81,10 +93,35 @@ h1 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
     transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition */
 }
-#start-btn:hover, #music-toggle-btn:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
+
+#music-toggle-btn:hover {
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Change background on hover */
+    transform: scale(1.05); /* Slightly grow the button */
+}
+main {
+    text-align: center;
+    margin: 20px auto;
 }
 
+#start-game-btn, #view-leaderboard-btn {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Button color */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+#start-game-btn:hover, #view-leaderboard-btn:hover {
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Change background on hover */
+    transform: scale(1.05); /* Slightly grow the button */
+}
+
+/* Leaderboard styles */
 #leaderboard {
     list-style: none;
     padding: 0;

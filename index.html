@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes page responsive for mobile devices -->
-    <title>Memory Game</title> <!-- Title of the webpage -->
-    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file for styling -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game - Home</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="icon" type="image/x-icon" href="Pictures/logo.png.png">
 </head>
 <body>
-    <h1>Memory Game</h1> <!-- Main title of the game -->
-    
-    <div id="game-board"></div> <!-- Game board where the color buttons will be displayed -->
-    
-    <button id="start-btn">Start Game</button> <!-- Button to start the game -->
-    <button id="toggle-leaderboard-btn">Toggle Leaderboard</button> <!-- Button to toggle leaderboard visibility -->
-    <button id="music-toggle-btn">Toggle Music</button>
+    <header>
+        <div id="header">
+            <img id="logo" src="Pictures/logo.png.png" alt="Logo">
+        </div>
+        <h1>Welcome to the Memory Game!</h1>
+    </header>
 
-    
-    <audio id="click-sound" src="sounds/click-sound.mp3" preload="auto"></audio> <!-- Click sound when buttons are pressed -->
-    <audio id="background-music"></audio> <!-- Background music for the game -->
+    <main>
+        <p>Test your memory with our fun and challenging memory game. Click the button below to start playing!</p>
+        <button id="start-game-btn">Start Game</button>
+        <button id="view-leaderboard-btn">View Leaderboard</button>
+    </main>
 
-    <ul id="leaderboard" style="display: none;"></ul> <!-- Unordered list for displaying the leaderboard (initially hidden) -->
+    <script>
+        document.getElementById('start-game-btn').addEventListener('click', () => {
+            window.location.href = 'memorygame.html'; // Redirect to the memory game page
+        });
 
-    <script src="script.js"></script> <!-- Link to external JavaScript file -->
+        document.getElementById('view-leaderboard-btn').addEventListener('click', () => {
+            window.location.href = 'leaderboard.html'; // Redirect to the leaderboard page
+        });
+    </script>
 </body>
 </html>

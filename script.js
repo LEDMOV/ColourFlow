@@ -127,6 +127,16 @@ startButton.addEventListener('click', () => {
 // Music toggle button listener
 musicToggleButton.addEventListener('click', toggleMusic); // Add event listener for music toggle button
 
+// Add event listener for toggle leaderboard button
+const toggleLeaderboardButton = document.getElementById('toggle-leaderboard-btn'); // Get the toggle leaderboard button
+toggleLeaderboardButton.addEventListener('click', () => {
+    if (leaderboardElem.style.display === "none") {
+        leaderboardElem.style.display = "block"; // Show the leaderboard
+    } else {
+        leaderboardElem.style.display = "none"; // Hide the leaderboard
+    }
+});
+
 // Load and play a song
 function loadAndPlaySong(songIndex) {
     if (songIndex < playlist.length) {
