@@ -12,12 +12,12 @@ h1 {
 
 #game-board {
     display: grid;
+    grid-template-columns: repeat(2, 150px);
+    grid-gap: 10px;
     justify-content: center;
     margin: 20px auto;
-    grid-gap: 10px;
 }
 
-/* Style for color buttons */
 .color-btn {
     width: 150px;
     height: 150px;
@@ -25,30 +25,49 @@ h1 {
     cursor: pointer;
     border-radius: 15px;
     background-color: #f0f0f0;
-    box-shadow: 0 6px #ccc; /* Shadow for 3D effect */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+    box-shadow: 0 6px #ccc;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Button pressed effect */
 .color-btn:active {
-    transform: translateY(8px); /* Push down more when clicked */
-    box-shadow: 0 2px #999; /* Shadow change on click */
+    transform: translateY(8px);
+    box-shadow: 0 2px #999;
 }
 
-/* Start button styling */
 #start-btn {
     padding: 10px 20px;
-    background-color: #333;
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient background */
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px; /* More rounded corners */
     cursor: pointer;
     font-size: 16px;
     margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 #start-btn:hover {
-    background-color: #555; /* Darker on hover */
+    background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
+    transform: scale(1.05); /* Slightly grow the button */
+}
+
+#toggle-leaderboard-btn {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Different gradient */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Same rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#toggle-leaderboard-btn:hover {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c); /* Reverse gradient on hover */
+    transform: scale(1.05); /* Slightly grow the button */
 }
 
 #leaderboard {

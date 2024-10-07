@@ -1,53 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes page responsive for mobile devices -->
+    <title>Memory Game</title> <!-- Title of the webpage -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file for styling -->
 </head>
 <body>
-    <h1>Memory Game</h1>
-    <div id="game-board"></div>
-    <button id="start-btn">Start Game</button>
+    <h1>Memory Game</h1> <!-- Main title of the game -->
     
-    <!-- Audio element for the click sound -->
-    <audio id="click-sound" src="click-sound.mp3" preload="auto"></audio>
-    <audio id="background-music" autoplay></audio> <!-- Main audio element -->
+    <div id="game-board"></div> <!-- Game board where the color buttons will be displayed -->
+    
+    <button id="start-btn">Start Game</button> <!-- Button to start the game -->
+    <button id="toggle-leaderboard-btn">Toggle Leaderboard</button> <!-- Button to toggle leaderboard visibility -->
+    
+    <audio id="click-sound" src="sounds/click-sound.mp3" preload="auto"></audio> <!-- Click sound when buttons are pressed -->
+    <audio id="background-music"></audio> <!-- Background music for the game -->
 
-    <script>
-        // Define your playlist of songs
-        const playlist = [
-            "path/to/song1.mp3",
-            "path/to/song2.mp3",
-            "path/to/song3.mp3"
-        ];
+    <ul id="leaderboard" style="display: none;"></ul> <!-- Unordered list for displaying the leaderboard (initially hidden) -->
 
-        let currentSongIndex = 0;
-        const audioPlayer = document.getElementById('background-music');
-
-        // Function to load a song and play it
-        function loadAndPlaySong(songIndex) {
-            if (songIndex < playlist.length) {
-                audioPlayer.src = playlist[songIndex];
-                audioPlayer.play();
-            }
-        }
-
-        // Play the first song when the page loads
-        loadAndPlaySong(currentSongIndex);
-
-        // Event listener for when a song ends
-        audioPlayer.addEventListener('ended', function() {
-            currentSongIndex++;
-            if (currentSongIndex < playlist.length) {
-                loadAndPlaySong(currentSongIndex);  // Play the next song
-            } else {
-                currentSongIndex = 0;  // Restart playlist if all songs are played
-                loadAndPlaySong(currentSongIndex);
-            }
-        });
-    </script>
-
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
 </body>
 </html>

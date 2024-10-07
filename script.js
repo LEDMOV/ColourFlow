@@ -6,14 +6,25 @@ let speed = 1000; // Initial speed
 let gridSize = 2; // Initial grid size (2x2)
 
 const startButton = document.getElementById('start-btn');
+const toggleLeaderboardButton = document.getElementById('toggle-leaderboard-btn');
 const gameBoard = document.getElementById('game-board');
 const leaderboardElem = document.getElementById('leaderboard');
+const clickSound = document.getElementById('click-sound'); 
+
+// Define your playlist of songs
+const playlist = [
+    "sounds/hello-bossa-245054.mp3",
+    "sounds/jazzy-slow-background-music-244598.mp3",
+    "sounds/bossa-for-love-245952.mp3"
+];
+
+let currentSongIndex = 0;
+const audioPlayer = document.getElementById('background-music');
 
 // Generate game board based on grid size
 function generateGameBoard() {
     gameBoard.innerHTML = '';
     gameBoard.style.gridTemplateColumns = `repeat(${gridSize}, 150px)`;
-    gameBoard.style.gridTemplateRows = `repeat(${gridSize}, 150px)`;
 
     for (let i = 0; i < gridSize * gridSize; i++) {
         let color = colors[i % colors.length];
@@ -28,14 +39,14 @@ function generateGameBoard() {
     }
 }
 
-// Flash a color
+// Function to flash a color
 function flashColor(color) {
     const colorElem = document.getElementById(color);
     colorElem.style.opacity = 0.5;
     setTimeout(() => colorElem.style.opacity = 1, speed / 2);
 }
 
-// Play the sequence
+// Function to show the sequence
 function playSequence() {
     let i = 0;
     const interval = setInterval(() => {
@@ -47,9 +58,8 @@ function playSequence() {
 
 // Add a random color to the sequence
 function addToSequence() {
-    let availableColors = document.querySelectorAll('.color-btn');
-    const randomIndex = Math.floor(Math.random() * availableColors.length);
-    gameSequence.push(availableColors[randomIndex].id);
+    const randomIndex = Math.floor(Math.random() * (gridSize * gridSize));
+    gameSequence.push(colors[randomIndex % colors.length]);
 }
 
 // Start the game
@@ -62,11 +72,11 @@ function startGame() {
     nextLevel();
 }
 
-// Go to the next level
+// Move to the next level
 function nextLevel() {
     playerSequence = [];
     level++;
-    speed = Math.max(300, speed - 50); // Speed up the game each level
+    speed = Math.max(300, speed - 50); // Game speeds up
     addToSequence();
     playSequence();
 
@@ -82,6 +92,10 @@ function handlePlayerInput(color) {
     playerSequence.push(color);
     const currentMove = playerSequence.length - 1;
 
+    // Play sound on button click
+    clickSound.currentTime = 0; // Reset sound to start
+    clickSound.play(); // Play the sound
+
     if (playerSequence[currentMove] !== gameSequence[currentMove]) {
         alert(`Game Over! You reached level ${level}`);
         saveScore(level);
@@ -92,7 +106,31 @@ function handlePlayerInput(color) {
 }
 
 // Start button listener
-startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', () => {
+    startGame();
+    loadAndPlaySong(currentSongIndex); // Start the background music when the game begins
+});
+
+// Load and play a song
+function loadAndPlaySong(songIndex) {
+    if (songIndex < playlist.length) {
+        audioPlayer.src = playlist[songIndex];
+        audioPlayer.play().catch(error => {
+            console.log('Music autoplay was blocked:', error);
+        });
+    }
+}
+
+// Move to the next song when one ends
+audioPlayer.addEventListener('ended', function() {
+    currentSongIndex++;
+    if (currentSongIndex < playlist.length) {
+        loadAndPlaySong(currentSongIndex);
+    } else {
+        currentSongIndex = 0; // Restart playlist
+        loadAndPlaySong(currentSongIndex);
+    }
+});
 
 // Save score to localStorage
 function saveScore(score) {
@@ -113,3 +151,9 @@ function loadLeaderboard() {
 
 // Load leaderboard when the page is loaded
 window.onload = loadLeaderboard;
+
+// Toggle leaderboard visibility
+toggleLeaderboardButton.addEventListener('click', () => {
+    const leaderboard = leaderboardElem.style.display;
+    leaderboardElem.style.display = leaderboard === 'none' || leaderboard === '' ? 'block' : 'none';
+});
