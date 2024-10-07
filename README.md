@@ -1,4 +1,4 @@
-# Memory Game
+# ColourFlow
 
 Welcome to our submission for the Stowe Hackathon dated Monday, 7th October 2024.
 
@@ -9,7 +9,7 @@ Welcome to our submission for the Stowe Hackathon dated Monday, 7th October 2024
 - **Harrison Teodorani-Fabbri)
 
 ## Project Overview
-The Memory Game is a fun and engaging game that challenges players' memory skills. Players must remember and replicate a sequence of colors, with increasing levels of difficulty as they progress through the game. The game features sound effects for added engagement, and a responsive interface that adapts to different grid sizes.
+ColourFlow is a fun and engaging game that challenges players' memory skills. Players must remember and replicate a sequence of colors, with increasing levels of difficulty as they progress through the game. The game features sound effects for added engagement, and a responsive interface that adapts to different grid sizes.
 
 ## Features
 - Dynamic grid size that increases with player progress
