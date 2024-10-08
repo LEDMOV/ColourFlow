@@ -6,7 +6,7 @@ Welcome to our submission for the Stowe Hackathon dated Monday, 7th October 2024
 - **lxdv** (Alfie Corthine)
 - **Kaito1235** (Kaito Mbanefo)
 - **Jackfwy** (Jack Yates)
-- **Harrison** Teodorani-Fabbri)
+- **Harrison Teodorani-Fabbri**
 
 ## Project Overview
 ColourFlow is a fun and engaging game that challenges players' memory skills. Players must remember and replicate a sequence of colors, with increasing levels of difficulty as they progress through the game. The game features sound effects for added engagement, and a responsive interface that adapts to different grid sizes.
@@ -26,7 +26,7 @@ ColourFlow is a fun and engaging game that challenges players' memory skills. Pl
 ## Playing
 - Visit 
     ```bash
-https://hackathon-sable-xi.vercel.app/
+    https://hackathon-sable-xi.vercel.app/
 
 ## Installation
 
