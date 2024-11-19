@@ -2,6 +2,8 @@
 
 Welcome to our submission for the Stowe Hackathon dated Monday, 7th October 2024.
 
+As of the 19th of November 2024, our team was crowned the winners of the Hackathon.
+
 ## Team Members
 - **lxdv** (Alfie Corthine)
 - **Kaito1235** (Kaito Mbanefo)
